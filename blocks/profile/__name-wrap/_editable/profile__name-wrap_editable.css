@@ -1,0 +1,7 @@
+@media screen and (max-width: 960px) {
+  .profile__name-wrap_editable {
+    position: relative;
+    left: 14px;
+  }
+}
+
