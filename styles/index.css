@@ -13,6 +13,7 @@
 @import url(../blocks/page/__main/page__main.css);
 @import url(../blocks/page/__header/page__header.css);
 @import url(../blocks/page/__section/_width/page__section_width_content.css);
+@import url(../blocks/page/__footer/page__footer.css);
 
 /* Header */
 @import url(../blocks/header/header.css);
@@ -43,3 +44,7 @@
 /* Like button */
 @import url(../blocks/like-button/like-button.css);
 @import url(../blocks/like-button/_active/like-button_active.css);
+
+/* Footer */
+@import url(../blocks/footer/footer.css);
+@import url(../blocks/footer/__copyright/footer__copyright.css);
