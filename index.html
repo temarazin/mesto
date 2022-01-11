@@ -1,80 +1,80 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./vendor/normalize.css">
-    <link rel="stylesheet" href="./styles/index.css">
-    <title>Mesto</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./vendor/normalize.css">
+  <link rel="stylesheet" href="./styles/index.css">
+  <title>Mesto</title>
 </head>
 <body>
-    <div class="page">
-        <header class="header page__header page__section page__section_width_content">
-            <a href="/" class="header__logo"></a>
-        </header>
-        <main class="main page__main">
-          <section class="profile main__profile page__section page__section_width_content">
-            <img src="./images/avatar.jpg" alt="Жак-Ив Кусто" class="profile__avatar">
-            <div class="profile__info">
-              <div class="profile__name-wrap profile__name-wrap_editable">
-                <h1 class="profile__name">Жак-Ив Кусто</h1>
-                <button class="profile__edit-button"></button>
-              </div>
-              <p class="profile__profession">Исследователь океана</p>
+  <div class="page">
+    <header class="header page__header page__section page__section_width_content">
+      <a href="/" class="header__logo"></a>
+    </header>
+    <main class="main page__main">
+      <section class="profile main__profile page__section page__section_width_content">
+        <img src="./images/avatar.jpg" alt="Жак-Ив Кусто" class="profile__avatar">
+        <div class="profile__info">
+          <div class="profile__name-wrap profile__name-wrap_editable">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <button class="profile__edit-button"></button>
+          </div>
+          <p class="profile__profession">Исследователь океана</p>
+        </div>
+        <button class="profile__add-button"></button>
+      </section>
+      <section class="gallery main__gallery page__section page__section_width_content">
+        <ul class="photo-grid">
+          <li class="photo-grid__item">
+            <img src="./images/city_kazan.jpg" alt="" class="photo-grid__image">
+            <div class="photo-grid__item-footer">
+              <p class="photo-grid__item-name">Казань</p>
+              <button class="like-button"></button>
             </div>
-            <button class="profile__add-button"></button>
-          </section>
-          <section class="gallery main__gallery page__section page__section_width_content">
-            <ul class="photo-grid">
-              <li class="photo-grid__item">
-                <img src="./images/city_kazan.jpg" alt="" class="photo-grid__image">
-                <div class="photo-grid__item-footer">
-                  <p class="photo-grid__item-name">Казань</p>
-                  <button class="like-button"></button>
-                </div>
-              </li>
-              <li class="photo-grid__item">
-                <img src="./images/city_moscow.jpg" alt="" class="photo-grid__image">
-                <div class="photo-grid__item-footer">
-                  <p class="photo-grid__item-name">Москва</p>
-                  <button class="like-button"></button>
-                </div>
-              </li>
-              <li class="photo-grid__item">
-                <img src="./images/city_petersburg.jpg" alt="" class="photo-grid__image">
-                <div class="photo-grid__item-footer">
-                  <p class="photo-grid__item-name">Санкт-Петербург</p>
-                  <button class="like-button"></button>
-                </div>
-              </li>
-              <li class="photo-grid__item">
-                <img src="./images/city_uglich.jpg" alt="" class="photo-grid__image">
-                <div class="photo-grid__item-footer">
-                  <p class="photo-grid__item-name">Углич</p>
-                  <button class="like-button like-button_active"></button>
-                </div>
-              </li>
-              <li class="photo-grid__item">
-                <img src="./images/city_volgograd.jpg" alt="" class="photo-grid__image">
-                <div class="photo-grid__item-footer">
-                  <p class="photo-grid__item-name">Волгоград</p>
-                  <button class="like-button"></button>
-                </div>
-              </li>
-              <li class="photo-grid__item">
-                <img src="./images/city_yaroslavl.jpg" alt="" class="photo-grid__image">
-                <div class="photo-grid__item-footer">
-                  <p class="photo-grid__item-name">Ярославль</p>
-                  <button class="like-button"></button>
-                </div>
-              </li>
-            </ul>
-          </section>
-        </main>
-        <footer class="footer page__footer page__section page__section_width_content">
-          <p class="footer__copyright">© 2021 Mesto Russia</p>
-        </footer>
-    </div>
+          </li>
+          <li class="photo-grid__item">
+            <img src="./images/city_moscow.jpg" alt="" class="photo-grid__image">
+            <div class="photo-grid__item-footer">
+              <p class="photo-grid__item-name">Москва</p>
+              <button class="like-button"></button>
+            </div>
+          </li>
+          <li class="photo-grid__item">
+            <img src="./images/city_petersburg.jpg" alt="" class="photo-grid__image">
+            <div class="photo-grid__item-footer">
+              <p class="photo-grid__item-name">Санкт-Петербург</p>
+              <button class="like-button"></button>
+            </div>
+          </li>
+          <li class="photo-grid__item">
+            <img src="./images/city_uglich.jpg" alt="" class="photo-grid__image">
+            <div class="photo-grid__item-footer">
+              <p class="photo-grid__item-name">Углич</p>
+              <button class="like-button like-button_active"></button>
+            </div>
+          </li>
+          <li class="photo-grid__item">
+            <img src="./images/city_volgograd.jpg" alt="" class="photo-grid__image">
+            <div class="photo-grid__item-footer">
+              <p class="photo-grid__item-name">Волгоград</p>
+              <button class="like-button"></button>
+            </div>
+          </li>
+          <li class="photo-grid__item">
+            <img src="./images/city_yaroslavl.jpg" alt="" class="photo-grid__image">
+            <div class="photo-grid__item-footer">
+              <p class="photo-grid__item-name">Ярославль</p>
+              <button class="like-button"></button>
+            </div>
+          </li>
+        </ul>
+      </section>
+    </main>
+    <footer class="footer page__footer page__section page__section_width_content">
+      <p class="footer__copyright">© 2021 Mesto Russia</p>
+    </footer>
+  </div>
 </body>
 </html>
