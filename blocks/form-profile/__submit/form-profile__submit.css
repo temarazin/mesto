@@ -1,3 +1,9 @@
 .form-profile__submit {
   margin-top: 48px;
 }
+
+@media screen and (max-width: 960px) {
+  .form-profile__submit {
+    margin-top: 45px;
+  }
+}

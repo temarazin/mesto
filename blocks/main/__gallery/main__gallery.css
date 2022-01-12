@@ -1,3 +1,9 @@
 .main__gallery {
   margin-top: 51px;
 }
+
+@media screen and (max-width: 960px) {
+  .main__gallery {
+    margin-top: 36px;
+  }
+}

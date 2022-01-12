@@ -3,3 +3,9 @@
   padding: 0;
   border: none;
 }
+
+@media screen and (max-width: 960px) {
+  .form-profile__fieldset {
+    margin-top: 75px;
+  }
+}

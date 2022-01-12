@@ -4,3 +4,9 @@
   line-height: 1.2;
   margin: 0;
 }
+
+@media screen and (max-width: 960px) {
+  .popup__header {
+    font-size: 18px;
+  }
+}
