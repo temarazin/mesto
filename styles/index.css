@@ -64,5 +64,3 @@
 
 /* Button */
 @import url(../blocks/button/button.css);
-@import url(../blocks/button/_width/button_width_full.css);
-@import url(../blocks/button/_theme/button_theme_black.css);

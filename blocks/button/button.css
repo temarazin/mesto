@@ -10,6 +10,9 @@
   box-sizing: border-box;
   min-height: 50px;
   cursor: pointer;
+  background-color: #000;
+  color: #fff;
+  width: 100%;
   transition: 0.3s;
 }
 
