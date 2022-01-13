@@ -1,5 +1,5 @@
 /* popups */
-let popupProfile = document.querySelector('.popup_el_profile');
+let popupProfile = document.querySelector('.popup');
 
 /* forms */
 let formProfile = document.querySelector('.form-profile');
@@ -7,8 +7,8 @@ let formProfile = document.querySelector('.form-profile');
 /* controls */
 let btnEditProfile = document.querySelector('.profile__edit-button');
 let btnCloseProfile = document.querySelector('.popup__close-btn');
-let inputProfileName = document.querySelector('.form-profile__input_el_name');
-let inputProfileProf = document.querySelector('.form-profile__input_el_profession');
+let inputProfileName = document.querySelector('.form-profile__input[name="name"]');
+let inputProfileProf = document.querySelector('.form-profile__input[name="profession"]');
 
 /* elements */
 let profileName = document.querySelector('.profile__name');
