@@ -40,10 +40,6 @@
 @import url(../blocks/photo-grid/__like-button/photo-grid__like-button.css);
 @import url(../blocks/photo-grid/__like-button/_active/photo-grid__like-button_active.css);
 
-/* Like button */
-/* @import url(../blocks/like-button/like-button.css);
-@import url(../blocks/like-button/_active/like-button_active.css); */
-
 /* Footer */
 @import url(../blocks/footer/footer.css);
 @import url(../blocks/footer/__copyright/footer__copyright.css);
