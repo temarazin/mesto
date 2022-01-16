@@ -1,6 +1,8 @@
 .profile__name-wrap {
   display: flex;
   align-items: baseline;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 @media screen and (max-width: 960px) {
