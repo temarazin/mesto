@@ -26,48 +26,6 @@
       </section>
       <section class="gallery page__section page__section_place_gallery" aria-label="Галерея мест">
         <ul class="photo-grid">
-          <li class="photo-grid__item">
-            <img src="./images/city_kazan.jpg" alt="Мечеть Кул Шариф" class="photo-grid__image">
-            <div class="photo-grid__item-footer">
-              <p class="photo-grid__item-name">Казань</p>
-              <button type="button" class="photo-grid__like-button"></button>
-            </div>
-          </li>
-          <li class="photo-grid__item">
-            <img src="./images/city_moscow.jpg" alt="Кремль" class="photo-grid__image">
-            <div class="photo-grid__item-footer">
-              <p class="photo-grid__item-name">Москва</p>
-              <button type="button" class="photo-grid__like-button"></button>
-            </div>
-          </li>
-          <li class="photo-grid__item">
-            <img src="./images/city_petersburg.jpg" alt="Река Мойка" class="photo-grid__image">
-            <div class="photo-grid__item-footer">
-              <p class="photo-grid__item-name">Санкт-Петербург</p>
-              <button type="button" class="photo-grid__like-button"></button>
-            </div>
-          </li>
-          <li class="photo-grid__item">
-            <img src="./images/city_uglich.jpg" alt="Набережная Углича" class="photo-grid__image">
-            <div class="photo-grid__item-footer">
-              <p class="photo-grid__item-name">Углич</p>
-              <button type="button" class="photo-grid__like-button photo-grid__like-button_active"></button>
-            </div>
-          </li>
-          <li class="photo-grid__item">
-            <img src="./images/city_volgograd.jpg" alt="Родина-Мать" class="photo-grid__image">
-            <div class="photo-grid__item-footer">
-              <p class="photo-grid__item-name">Волгоград</p>
-              <button type="button" class="photo-grid__like-button"></button>
-            </div>
-          </li>
-          <li class="photo-grid__item">
-            <img src="./images/city_yaroslavl.jpg" alt="Стрелка" class="photo-grid__image">
-            <div class="photo-grid__item-footer">
-              <p class="photo-grid__item-name">Ярославль</p>
-              <button type="button" class="photo-grid__like-button"></button>
-            </div>
-          </li>
         </ul>
       </section>
     </main>
@@ -103,6 +61,16 @@
       </div>
     </div>
   </div>
+
+  <template id="card">
+    <li class="photo-grid__item">
+      <img src="" alt="" class="photo-grid__image">
+      <div class="photo-grid__item-footer">
+        <p class="photo-grid__item-name"></p>
+        <button type="button" class="photo-grid__like-button"></button>
+      </div>
+    </li>
+  </template>
 
   <script src="./scripts/index.js"></script>
 </body>
