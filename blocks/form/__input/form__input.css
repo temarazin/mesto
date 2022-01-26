@@ -1,4 +1,4 @@
-.form-profile__input {
+.form__input {
   width: 100%;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-width: 0 0 1px;
@@ -8,12 +8,12 @@
   margin-top: 30px;
 }
 
-.form-profile__input:first-child {
+.form__input:first-child {
   margin-top: 0;
 }
 
 /* так, для красоты */
-.form-profile__input:focus {
+.form__input:focus {
   outline: none;
   border-color: #000;
 }

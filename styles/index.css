@@ -51,11 +51,11 @@
 @import url(../blocks/popup/__header/popup__header.css);
 @import url(../blocks/popup/__close-btn/popup__close-btn.css);
 
-/* Form profile */
-@import url(../blocks/form-profile/form-profile.css);
-@import url(../blocks/form-profile/__input/form-profile__input.css);
-@import url(../blocks/form-profile/__fieldset/form-profile__fieldset.css);
-@import url(../blocks/form-profile/__submit/form-profile__submit.css);
+/* Form */
+@import url(../blocks/form/form.css);
+@import url(../blocks/form/__input/form__input.css);
+@import url(../blocks/form/__fieldset/form__fieldset.css);
+@import url(../blocks/form/__submit/form__submit.css);
 
 /* Button */
 @import url(../blocks/button/button.css);

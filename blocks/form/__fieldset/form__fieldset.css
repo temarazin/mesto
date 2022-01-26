@@ -1,11 +1,11 @@
-.form-profile__fieldset {
+.form__fieldset {
   margin: 54px 0 0;
   padding: 0;
   border: none;
 }
 
 @media screen and (max-width: 960px) {
-  .form-profile__fieldset {
+  .form__fieldset {
     margin-top: 75px;
   }
 }

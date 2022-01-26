@@ -33,26 +33,54 @@
       <p class="footer__copyright">© 2021 Mesto Russia</p>
     </footer>
 
-    <div class="popup">
+    <div class="popup popup_name_profile">
       <div class="popup__container">
         <h3 class="popup__header">Редактировать профиль</h3>
-        <form name="form-profile" class="form-profile">
-          <fieldset class="form-profile__fieldset">
+        <form name="form-profile" class="form">
+          <fieldset class="form__fieldset">
             <input
               name="name"
               type="text"
-              class="form-profile__input"
+              class="form__input"
               placeholder="Имя"
               required
             >
             <input
               name="profession"
               type="text"
-              class="form-profile__input"
+              class="form__input"
               placeholder="О себе"
               required
             >
-            <button type="submit" class="button button_width_full button_theme_black form-profile__submit">
+            <button type="submit" class="button form__submit">
+              Сохранить
+            </button>
+          </fieldset>
+        </form>
+        <button type="button" class="popup__close-btn"></button>
+      </div>
+    </div>
+
+    <div class="popup popup_name_card">
+      <div class="popup__container">
+        <h3 class="popup__header">Новое место</h3>
+        <form name="form-card" class="form">
+          <fieldset class="form__fieldset">
+            <input
+              name="name"
+              type="text"
+              class="form__input"
+              placeholder="Название"
+              required
+            >
+            <input
+              name="image-link"
+              type="url"
+              class="form__input"
+              placeholder="Ссылка на картинку"
+              required
+            >
+            <button type="submit" class="button form__submit">
               Сохранить
             </button>
           </fieldset>
