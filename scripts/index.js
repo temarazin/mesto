@@ -1,5 +1,4 @@
-const initialCards = [
-  {
+const initialCards = [{
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
   },
@@ -60,9 +59,9 @@ function closePopup(popup) {
 }
 
 function addCard(data) {
-  let card = cardTemplate.cloneNode(true);
-  let image = card.querySelector('.photo-grid__image');
-  let name = card.querySelector('.photo-grid__item-name');
+  const card = cardTemplate.cloneNode(true);
+  const image = card.querySelector('.photo-grid__image');
+  const name = card.querySelector('.photo-grid__item-name');
 
   image.src = data.link;
   name.textContent = data.name;
@@ -83,7 +82,7 @@ function formProfileSubmit(e) {
 
 function formCardSubmit(e) {
   e.preventDefault();
-  let item = {};
+  const item = {};
   item.name = inputCardName.value;
   item.link = inputCardImageLink.value;
   addCard(item);
@@ -105,15 +104,15 @@ formCard.addEventListener('submit', formCardSubmit);
 btnCardAdd.addEventListener('click', () => openPopup(popupCard));
 
 
-document.addEventListener('click', function(e) {
-  let classList = e.target.classList;
+document.addEventListener('click', function (e) {
+  const classList = e.target.classList;
   if (classList.contains('popup__close-btn'))
     closePopup(e.target.closest('.popup'));
 });
 
-cardContainer.addEventListener('click', function(e) {
-  let classList = e.target.classList;
-  let target = e.target;
+cardContainer.addEventListener('click', function (e) {
+  const classList = e.target.classList;
+  const target = e.target;
 
   if (classList.contains('photo-grid__remove-button')) {
     e.stopPropagation();
@@ -128,14 +127,14 @@ cardContainer.addEventListener('click', function(e) {
 
   if (classList.contains('photo-grid__image')) {
     e.stopPropagation();
-    let card = target.closest('.photo-grid__item');
-    let image = popupImage.querySelector('.image__img');
+    const card = target.closest('.photo-grid__item');
+    const image = popupImage.querySelector('.image__img');
     image.src = target.src;
-    let label = popupImage.querySelector('.image__label');
+    const label = popupImage.querySelector('.image__label');
     label.textContent = card.querySelector('.photo-grid__item-name').textContent;
     openPopup(popupImage);
     return;
   }
 });
 
-initialCards.forEach( item => addCard(item) );
+initialCards.forEach(item => addCard(item));
