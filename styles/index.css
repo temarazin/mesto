@@ -65,7 +65,6 @@
 @import url(../blocks/button/button.css);
 
 /* Image */
-@import url(../blocks/image/image.css);
 @import url(../blocks/image/_no-margin/image_no-margin.css);
 @import url(../blocks/image/__img/image__img.css);
 @import url(../blocks/image/__label/image__label.css);
