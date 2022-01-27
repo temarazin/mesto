@@ -87,6 +87,10 @@ function addCard(data) {
   cardContainer.prepend(card);
 }
 
+function removeCard(card) {
+  card.remove();
+}
+
 /* events */
 btnEditProfile.addEventListener('click', () => {
   inputProfileName.value = profileName.textContent;
@@ -105,5 +109,21 @@ document.addEventListener('click', function(e) {
     closePopup(e.target.closest('.popup'));
 });
 
+cardContainer.addEventListener('click', function(e) {
+  let classList = e.target.classList;
+  let target = e.target;
+
+  if (classList.contains('photo-grid__remove-button')) {
+    e.stopPropagation();
+    removeCard(target.closest('.photo-grid__item'));
+    return;
+  }
+
+  if (classList.contains('photo-grid__like-button')) {
+    target.classList.toggle('photo-grid__like-button_active');
+    return;
+  }
+
+});
 
 initialCards.forEach( item => addCard(item) );

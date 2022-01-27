@@ -39,6 +39,8 @@
 @import url(../blocks/photo-grid/__item-footer/photo-grid__item-footer.css);
 @import url(../blocks/photo-grid/__like-button/photo-grid__like-button.css);
 @import url(../blocks/photo-grid/__like-button/_active/photo-grid__like-button_active.css);
+@import url(../blocks/photo-grid/__remove-button/photo-grid__remove-button.css);
+@import url(../blocks/photo-grid/__image-link/photo__image-link.css);
 
 /* Footer */
 @import url(../blocks/footer/footer.css);
