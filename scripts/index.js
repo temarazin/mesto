@@ -31,6 +31,7 @@ const cardTemplate = document.querySelector('#card').content;
 /* popups */
 const popupProfile = document.querySelector('.popup_name_profile');
 const popupCard = document.querySelector('.popup_name_card');
+const popupImage = document.querySelector('.popup_name_image');
 
 /* forms */
 const formProfile = document.querySelector('.form[name="form-profile"]');
@@ -121,6 +122,17 @@ cardContainer.addEventListener('click', function(e) {
 
   if (classList.contains('photo-grid__like-button')) {
     target.classList.toggle('photo-grid__like-button_active');
+    return;
+  }
+
+  if (classList.contains('photo-grid__image')) {
+    e.stopPropagation();
+    let card = target.closest('.photo-grid__item');
+    let image = popupImage.querySelector('.image__img');
+    image.src = target.src;
+    let label = popupImage.querySelector('.image__label');
+    label.textContent = card.querySelector('.photo-grid__item-name').textContent;
+    openPopup(popupImage);
     return;
   }
 
