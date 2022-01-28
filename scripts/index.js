@@ -38,6 +38,7 @@ function addCard(data) {
   const name = card.querySelector('.photo-grid__item-name');
 
   image.src = data.link;
+  image.alt = data.name;
   name.textContent = data.name;
 
   cardContainer.prepend(card);
