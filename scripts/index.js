@@ -23,6 +23,9 @@ const profileName = document.querySelector('.profile__name');
 const profileProf = document.querySelector('.profile__profession');
 const cardContainer = document.querySelector('.photo-grid');
 
+/* collections */
+const buttonsClosePopup = document.querySelectorAll('.popup__close-btn');
+
 /* functions */
 function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -77,21 +80,20 @@ function showImage(e) {
   openPopup(popupImage);
 }
 
-function formProfileSubmit(e) {
+function handleProfileSubmit(e) {
   e.preventDefault();
   profileName.textContent = inputProfileName.value;
   profileProf.textContent = inputProfileProf.value;
   closePopup(popupProfile);
 }
 
-function formCardSubmit(e) {
+function handleCardSubmit(e) {
   e.preventDefault();
   const item = {};
   item.name = inputCardName.value;
   item.link = inputCardImageLink.value;
   addCard(item);
-  inputCardName.value = '';
-  inputCardImageLink.value = '';
+  e.target.reset();
   closePopup(popupCard);
 }
 
@@ -103,15 +105,13 @@ function openProfilePopup() {
 
 /* events */
 btnEditProfile.addEventListener('click', openProfilePopup);
-formProfile.addEventListener('submit', formProfileSubmit);
-formCard.addEventListener('submit', formCardSubmit);
+formProfile.addEventListener('submit', handleProfileSubmit);
+formCard.addEventListener('submit', handleCardSubmit);
 btnCardAdd.addEventListener('click', () => openPopup(popupCard));
 
-
-document.addEventListener('click', function (e) {
-  const classList = e.target.classList;
-  if (classList.contains('popup__close-btn'))
-    closePopup(e.target.closest('.popup'));
+/* script */
+buttonsClosePopup.forEach(function (item) {
+  item.addEventListener('click', e => closePopup(e.target.closest('.popup')))
 });
 
 initialCards.forEach(item => addCard(item));
