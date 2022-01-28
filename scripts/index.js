@@ -32,20 +32,49 @@ function closePopup(popup) {
   popup.classList.remove('popup_opened');
 }
 
-function addCard(data) {
+function createCard(data) {
   const card = cardTemplate.cloneNode(true);
   const image = card.querySelector('.photo-grid__image');
   const name = card.querySelector('.photo-grid__item-name');
+
+  const btnLike = card.querySelector('.photo-grid__like-button');
+  const btnRemove = card.querySelector('.photo-grid__remove-button');
+  const imageContainer = card.querySelector('.photo__image-link');
 
   image.src = data.link;
   image.alt = data.name;
   name.textContent = data.name;
 
+  btnLike.addEventListener('click', likeCard);
+  btnRemove.addEventListener('click', removeCard);
+  imageContainer.addEventListener('click', showImage);
+
+  return card;
+}
+
+function addCard(data) {
+  const card = createCard(data);
   cardContainer.prepend(card);
 }
 
-function removeCard(card) {
-  card.remove();
+function removeCard(e) {
+  e.stopPropagation();
+  e.target.closest('.photo-grid__item').remove();
+}
+
+function likeCard(e) {
+  e.target.classList.toggle('photo-grid__like-button_active');
+}
+
+function showImage(e) {
+  const cardImage = e.currentTarget.querySelector('.photo-grid__image');
+  const card = e.target.closest('.photo-grid__item');
+  const image = popupImage.querySelector('.image__img');
+  image.src = cardImage.src;
+  image.alt = cardImage.alt;
+  const label = popupImage.querySelector('.image__label');
+  label.textContent = card.querySelector('.photo-grid__item-name').textContent;
+  openPopup(popupImage);
 }
 
 function formProfileSubmit(e) {
@@ -83,33 +112,6 @@ document.addEventListener('click', function (e) {
   const classList = e.target.classList;
   if (classList.contains('popup__close-btn'))
     closePopup(e.target.closest('.popup'));
-});
-
-cardContainer.addEventListener('click', function (e) {
-  const classList = e.target.classList;
-  const target = e.target;
-
-  if (classList.contains('photo-grid__remove-button')) {
-    e.stopPropagation();
-    removeCard(target.closest('.photo-grid__item'));
-    return;
-  }
-
-  if (classList.contains('photo-grid__like-button')) {
-    target.classList.toggle('photo-grid__like-button_active');
-    return;
-  }
-
-  if (classList.contains('photo-grid__image')) {
-    e.stopPropagation();
-    const card = target.closest('.photo-grid__item');
-    const image = popupImage.querySelector('.image__img');
-    image.src = target.src;
-    const label = popupImage.querySelector('.image__label');
-    label.textContent = card.querySelector('.photo-grid__item-name').textContent;
-    openPopup(popupImage);
-    return;
-  }
 });
 
 initialCards.forEach(item => addCard(item));
