@@ -89,9 +89,10 @@ function handleProfileSubmit(e) {
 
 function handleCardSubmit(e) {
   e.preventDefault();
-  const item = {};
-  item.name = inputCardName.value;
-  item.link = inputCardImageLink.value;
+  const item = {
+    name: inputCardName.value,
+    link: inputCardImageLink.value
+  };
   addCard(item);
   e.target.reset();
   closePopup(popupCard);
