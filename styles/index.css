@@ -55,14 +55,17 @@
 @import url(../blocks/popup/__header/popup__header.css);
 @import url(../blocks/popup/__close-btn/popup__close-btn.css);
 
+/* Button */
+@import url(../blocks/button/button.css);
+
 /* Form */
 @import url(../blocks/form/form.css);
 @import url(../blocks/form/__input/form__input.css);
 @import url(../blocks/form/__fieldset/form__fieldset.css);
 @import url(../blocks/form/__submit/form__submit.css);
-
-/* Button */
-@import url(../blocks/button/button.css);
+@import url(../blocks/form/__submit/_disabled/form__submit_disabled.css);
+@import url(../blocks/form/__error-msg/form__error-msg.css);
+@import url(../blocks/form/__error-msg/_active/form__error-msg_active.css);
 
 /* Image */
 @import url(../blocks/image/_no-margin/image_no-margin.css);

@@ -7,8 +7,8 @@ const popupCard = document.querySelector('.popup_name_card');
 const popupImage = document.querySelector('.popup_name_image');
 
 /* forms */
-const formProfile = document.querySelector('.form[name="form-profile"]');
-const formCard = document.querySelector('.form[name="form-card"]');
+const formProfile = document.forms['form-profile'];
+const formCard = document.forms['form-card'];
 
 /* controls */
 const btnEditProfile = document.querySelector('.profile__edit-button');
@@ -115,3 +115,5 @@ buttonsClosePopup.forEach(function (item) {
 });
 
 initialCards.forEach(item => addCard(item));
+
+enableValidation();

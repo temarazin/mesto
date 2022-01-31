@@ -5,7 +5,7 @@
   font-size: 18px;
   line-height: 1.2;
   padding: 8px 16px;
-  border: none;
+  border: 1px solid transparent;
   border-radius: 2px;
   box-sizing: border-box;
   min-height: 50px;

@@ -30,34 +30,39 @@
       </section>
     </main>
     <footer class="footer page__section page__section_place_footer">
-      <!--
-        Я совсем не против мнемоник для спецсимволов, но стандарты Яндекс.Практикума
-        не рекомендуют их использовать:
-        https://code.s3.yandex.net/web-developer/static/design-rules/index.html
-        >> При использовании UTF-8 не используйте ссылки на HTML-сущности
-      -->
       <p class="footer__copyright">© 2021 Mesto Russia</p>
     </footer>
 
     <div class="popup popup_name_profile">
       <div class="popup__container">
         <h3 class="popup__header">Редактировать профиль</h3>
-        <form name="form-profile" class="form">
+        <form name="form-profile" class="form" novalidate>
           <fieldset class="form__fieldset">
+            <!-- Отключил autocomplete, чтобы удобнее было тестировать -->
             <input
               name="name"
+              id="profile-name"
               type="text"
               class="form__input"
               placeholder="Имя"
+              minlength="2"
+              maxlength="40"
               required
+              autocomplete="off"
             >
+            <span class="profile-name-error form__error-msg"></span>
             <input
               name="profession"
+              id="profile-profession"
               type="text"
               class="form__input"
               placeholder="О себе"
+              minlength="2"
+              maxlength="200"
               required
+              autocomplete="off"
             >
+            <span class="profile-profession-error form__error-msg"></span>
             <button type="submit" class="button form__submit">
               Сохранить
             </button>
@@ -74,18 +79,24 @@
           <fieldset class="form__fieldset">
             <input
               name="name"
+              id="card-name"
               type="text"
               class="form__input"
               placeholder="Название"
+              minlength="2"
+              maxlength="30"
               required
             >
+            <span class="card-name-error form__error-msg"></span>
             <input
               name="image-link"
+              id="card-url"
               type="url"
               class="form__input"
               placeholder="Ссылка на картинку"
               required
             >
+            <span class="card-url-error form__error-msg"></span>
             <button type="submit" class="button form__submit">
               Сохранить
             </button>
@@ -122,6 +133,7 @@
   </template>
 
   <script src="./scripts/initial-cards.js"></script>
+  <script src="./scripts/validation.js"></script>
   <script src="./scripts/index.js"></script>
 </body>
 </html>
