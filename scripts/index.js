@@ -23,9 +23,6 @@ const profileName = document.querySelector('.profile__name');
 const profileProf = document.querySelector('.profile__profession');
 const cardContainer = document.querySelector('.photo-grid');
 
-/* collections */
-const buttonsClosePopup = document.querySelectorAll('.popup__close-btn');
-
 /* functions */
 function openPopup(popup) {
   popup.classList.add('popup_opened');
@@ -33,6 +30,21 @@ function openPopup(popup) {
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+}
+
+function setPopupListeners() {
+  const buttonsClosePopup = document.querySelectorAll('.popup__close-btn');
+  buttonsClosePopup.forEach(function (item) {
+    item.addEventListener('click', e => closePopup(e.target.closest('.popup')))
+  });
+
+  const popups = document.querySelectorAll('.popup');
+  popups.forEach( item => {
+    item.addEventListener('click', e => {
+      if (e.target === e.currentTarget)
+        closePopup(e.target);
+    });
+  });
 }
 
 function createCard(data) {
@@ -111,10 +123,8 @@ formCard.addEventListener('submit', handleCardSubmit);
 btnCardAdd.addEventListener('click', () => openPopup(popupCard));
 
 /* script */
-buttonsClosePopup.forEach(function (item) {
-  item.addEventListener('click', e => closePopup(e.target.closest('.popup')))
-});
+
 
 initialCards.forEach(item => addCard(item));
-
+setPopupListeners();
 enableValidation();
