@@ -116,6 +116,12 @@ function openProfilePopup() {
   openPopup(popupProfile);
 }
 
+function initialize() {
+  setPopupListeners();
+  enableValidation();
+  initialCards.forEach(item => addCard(item));
+}
+
 /* events */
 btnEditProfile.addEventListener('click', openProfilePopup);
 formProfile.addEventListener('submit', handleProfileSubmit);
@@ -124,7 +130,5 @@ btnCardAdd.addEventListener('click', () => openPopup(popupCard));
 
 /* script */
 
+initialize();
 
-initialCards.forEach(item => addCard(item));
-setPopupListeners();
-enableValidation();
