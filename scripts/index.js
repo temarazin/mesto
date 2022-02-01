@@ -36,7 +36,7 @@ function closePopup(popup) {
 }
 
 function createCard(data) {
-  const card = cardTemplate.cloneNode(true);
+  const card = cardTemplate.querySelector('.photo-grid__item').cloneNode(true);
   const image = card.querySelector('.photo-grid__image');
   const name = card.querySelector('.photo-grid__item-name');
 
