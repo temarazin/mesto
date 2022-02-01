@@ -23,13 +23,18 @@ const profileName = document.querySelector('.profile__name');
 const profileProf = document.querySelector('.profile__profession');
 const cardContainer = document.querySelector('.photo-grid');
 
+/* variables */
+let isPopupOpened = false;
+
 /* functions */
 function openPopup(popup) {
   popup.classList.add('popup_opened');
+  isPopupOpened = true;
 }
 
 function closePopup(popup) {
   popup.classList.remove('popup_opened');
+  isPopupOpened = false;
 }
 
 function setPopupListeners() {
@@ -44,6 +49,13 @@ function setPopupListeners() {
       if (e.target === e.currentTarget)
         closePopup(e.target);
     });
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (isPopupOpened && e.key === 'Escape') {
+      const popup = document.querySelector('.popup.popup_opened');
+      closePopup(popup);
+    }
   });
 }
 
