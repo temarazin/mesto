@@ -133,6 +133,11 @@ function handleCardSubmit(e) {
 function openProfilePopup() {
   inputProfileName.value = profileName.textContent;
   inputProfileProf.value = profileProf.textContent;
+
+  // не очень хорошо реализовано, я знаю
+  hideValidationError(inputProfileName);
+  hideValidationError(inputProfileProf);
+
   openPopup(popupProfile);
 }
 
