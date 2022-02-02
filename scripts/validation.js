@@ -1,22 +1,28 @@
+let settings = {};
+
 function toggleButtonSubmitState(button, isEnabled) {
   if (isEnabled) {
-    button.classList.remove('form__submit_disabled');
+    button.classList.remove(settings.inactiveButtonClass);
   } else {
-    button.classList.add('form__submit_disabled');
+    button.classList.add(settings.inactiveButtonClass);
   }
   button.disabled = !isEnabled;
 }
 
-function showValidationError(fieldId, message) {
-  const messageBox = document.querySelector(`.${fieldId}-error`);
+function showValidationError(input, message) {
+  input.classList.add(settings.inputErrorClass);
+
+  const messageBox = document.querySelector(`.${input.id}-error`);
   messageBox.textContent = message;
-  messageBox.classList.add('form__error-msg_active');
+  messageBox.classList.add(settings.errorClass);
 }
 
-function hideValidationError(fieldId) {
-  const messageBox = document.querySelector(`.${fieldId}-error`);
+function hideValidationError(input) {
+  input.classList.remove(settings.inputErrorClass);
+
+  const messageBox = document.querySelector(`.${input.id}-error`);
   messageBox.textContent = '';
-  messageBox.classList.remove('form__error-msg_active');
+  messageBox.classList.remove(settings.errorClass);
 }
 
 function isValid(input) {
@@ -26,17 +32,17 @@ function isValid(input) {
 function validateInput(input) {
   let result = isValid(input);
   if (result) {
-    hideValidationError(input.id);
+    hideValidationError(input);
   } else {
-    showValidationError(input.id, input.validationMessage);
+    showValidationError(input, input.validationMessage);
   }
   return result;
 }
 
 function validateForm(form) {
   let isValidForm = true;
-  const btnSubmit = form.querySelector('.form__submit');
-  const inputList = form.querySelectorAll('.form__input');
+  const btnSubmit = form.querySelector(settings.submitButtonSelector);
+  const inputList = form.querySelectorAll(settings.inputSelector);
   Array.from(inputList).forEach( (input) => {
     isValidForm &= isValid(input);
   });
@@ -49,12 +55,13 @@ function validate(e) {
 }
 
 function setValidationListeners() {
-  const forms = Array.from(document.querySelectorAll('.form'));
+  const forms = Array.from(document.querySelectorAll(settings.formSelector));
   forms.forEach( form => {
     form.addEventListener('input', validate);
   });
 }
 
-function enableValidation() {
+function enableValidation(settingsData) {
+  settings = settingsData;
   setValidationListeners();
 }

@@ -130,7 +130,14 @@ function openProfilePopup() {
 
 function initialize() {
   setPopupListeners();
-  enableValidation();
+  enableValidation({
+    formSelector: 'form',
+    inputSelector: '.form__input',
+    submitButtonSelector: '.form__submit',
+    inactiveButtonClass: 'form__submit_disabled',
+    inputErrorClass: 'form__input_type_error',
+    errorClass: 'form__error-msg_active'
+  });
   initialCards.forEach(item => addCard(item));
 }
 
