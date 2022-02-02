@@ -23,40 +23,48 @@ const profileName = document.querySelector('.profile__name');
 const profileProf = document.querySelector('.profile__profession');
 const cardContainer = document.querySelector('.photo-grid');
 
-/* variables */
-let isPopupOpened = false;
-
 /* functions */
+function setPopupListeners(popup) {
+  const buttonClosePopup = popup.querySelector('.popup__close-btn');
+
+  buttonClosePopup.addEventListener('click', handleButtonClosePopup);
+  popup.addEventListener('click', handlePopupClick);
+  document.addEventListener('keydown', handlePopupEscPress);
+}
+
+function removePopupListeners(popup) {
+  const buttonClosePopup = popup.querySelector('.popup__close-btn');
+
+  buttonClosePopup.removeEventListener('click', handleButtonClosePopup);
+  popup.removeEventListener('click', handlePopupClick);
+  document.removeEventListener('keydown', handlePopupEscPress);
+}
+
 function openPopup(popup) {
+  setPopupListeners(popup);
   popup.classList.add('popup_opened');
-  isPopupOpened = true;
 }
 
 function closePopup(popup) {
+  removePopupListeners(popup);
   popup.classList.remove('popup_opened');
-  isPopupOpened = false;
 }
 
-function setPopupListeners() {
-  const buttonsClosePopup = document.querySelectorAll('.popup__close-btn');
-  buttonsClosePopup.forEach(function (item) {
-    item.addEventListener('click', e => closePopup(e.target.closest('.popup')))
-  });
+const handleButtonClosePopup = (e) => {
+  const popup = e.currentTarget.closest('.popup');
+  closePopup(popup);
+}
 
-  const popups = document.querySelectorAll('.popup');
-  popups.forEach( item => {
-    item.addEventListener('click', e => {
-      if (e.target === e.currentTarget)
-        closePopup(e.target);
-    });
-  });
+const handlePopupClick = (e) => {
+  if (e.target === e.currentTarget)
+    closePopup(e.target);
+}
 
-  document.addEventListener('keydown', (e) => {
-    if (isPopupOpened && e.key === 'Escape') {
-      const popup = document.querySelector('.popup.popup_opened');
-      closePopup(popup);
-    }
-  });
+const handlePopupEscPress = (e) => {
+  if (e.key === 'Escape') {
+    const popup = document.querySelector('.popup.popup_opened');
+    closePopup(popup);
+  }
 }
 
 function createCard(data) {
@@ -129,7 +137,6 @@ function openProfilePopup() {
 }
 
 function initialize() {
-  setPopupListeners();
   enableValidation({
     formSelector: 'form',
     inputSelector: '.form__input',
