@@ -134,16 +134,15 @@ function openProfilePopup() {
   inputProfileName.value = profileName.textContent;
   inputProfileProf.value = profileProf.textContent;
 
-  // не очень хорошо реализовано, я знаю
-  hideValidationError(inputProfileName);
-  hideValidationError(inputProfileProf);
+  validate(inputProfileName);
+  validate(inputProfileProf);
 
   openPopup(popupProfile);
 }
 
 function initialize() {
   enableValidation({
-    formSelector: 'form',
+    formSelector: '.form',
     inputSelector: '.form__input',
     submitButtonSelector: '.form__submit',
     inactiveButtonClass: 'button_disabled',

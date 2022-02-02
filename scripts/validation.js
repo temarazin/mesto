@@ -49,15 +49,20 @@ function validateForm(form) {
   toggleButtonSubmitState(btnSubmit, isValidForm);
 }
 
-function validate(e) {
-  validateInput(e.target);
-  validateForm(e.currentTarget);
+function validate(input) {
+  validateInput(input);
+  const form = input.closest(settings.formSelector);
+  validateForm(form);
+}
+
+function handleInput(e) {
+  validate(e.target);
 }
 
 function setValidationListeners() {
   const forms = Array.from(document.querySelectorAll(settings.formSelector));
   forms.forEach( form => {
-    form.addEventListener('input', validate);
+    form.addEventListener('input', handleInput);
   });
 }
 
