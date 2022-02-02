@@ -58,6 +58,7 @@
 
 /* Button */
 @import url(../blocks/button/button.css);
+@import url(../blocks/button/_disabled/button_disabled.css);
 
 /* Form */
 @import url(../blocks/form/form.css);
@@ -65,7 +66,6 @@
 @import url(../blocks/form/__input/_type/form__input_type_error.css);
 @import url(../blocks/form/__fieldset/form__fieldset.css);
 @import url(../blocks/form/__submit/form__submit.css);
-@import url(../blocks/form/__submit/_disabled/form__submit_disabled.css);
 @import url(../blocks/form/__error-msg/form__error-msg.css);
 @import url(../blocks/form/__error-msg/_active/form__error-msg_active.css);
 
