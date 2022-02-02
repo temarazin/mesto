@@ -17,7 +17,3 @@
   outline: none;
   border-color: #000;
 }
-
-.form__input:invalid {
-  border-color: #f00;
-}
