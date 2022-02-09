@@ -5,6 +5,9 @@ const cardTemplate = document.querySelector('#card').content;
 const popupProfile = document.querySelector('.popup_name_profile');
 const popupCard = document.querySelector('.popup_name_card');
 const popupImage = document.querySelector('.popup_name_image');
+// следующие 2 строки вообще адекватные?
+popupImage.elImage = popupImage.querySelector('.image__img');
+popupImage.elLabel = popupImage.querySelector('.image__label');
 
 /* forms */
 const formProfile = document.forms['form-profile'];
@@ -22,6 +25,7 @@ const inputCardImageLink = formCard.querySelector('.form__input[name="image-link
 const profileName = document.querySelector('.profile__name');
 const profileProf = document.querySelector('.profile__profession');
 const cardContainer = document.querySelector('.photo-grid');
+
 
 /* functions */
 function setPopupListeners(popup) {
@@ -104,11 +108,9 @@ function likeCard(e) {
 function showImage(e) {
   const cardImage = e.currentTarget.querySelector('.photo-grid__image');
   const card = e.target.closest('.photo-grid__item');
-  const image = popupImage.querySelector('.image__img');
-  image.src = cardImage.src;
-  image.alt = cardImage.alt;
-  const label = popupImage.querySelector('.image__label');
-  label.textContent = card.querySelector('.photo-grid__item-name').textContent;
+  popupImage.elImage.src = cardImage.src;
+  popupImage.elImage.alt = cardImage.alt;
+  popupImage.elLabel.textContent = card.querySelector('.photo-grid__item-name').textContent;
   openPopup(popupImage);
 }
 
@@ -156,7 +158,10 @@ function initialize() {
 btnEditProfile.addEventListener('click', openProfilePopup);
 formProfile.addEventListener('submit', handleProfileSubmit);
 formCard.addEventListener('submit', handleCardSubmit);
-btnCardAdd.addEventListener('click', () => openPopup(popupCard));
+btnCardAdd.addEventListener('click', () => {
+  validateForm(popupCard);
+  openPopup(popupCard);
+});
 
 /* script */
 
