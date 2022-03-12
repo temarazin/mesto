@@ -1,3 +1,16 @@
+import { FormValidator } from './FormValidator.js'
+
+/* validator settings */
+
+const validatorSettings = {
+  formSelector: '.form',
+  inputSelector: '.form__input',
+  submitButtonSelector: '.form__submit',
+  inactiveButtonClass: 'button_disabled',
+  inputErrorClass: 'form__input_type_error',
+  errorClass: 'form__error-msg_active'
+}
+
 /* templates */
 const cardTemplate = document.querySelector('#card').content;
 
@@ -5,13 +18,16 @@ const cardTemplate = document.querySelector('#card').content;
 const popupProfile = document.querySelector('.popup_name_profile');
 const popupCard = document.querySelector('.popup_name_card');
 const popupImage = document.querySelector('.popup_name_image');
-// следующие 2 строки вообще адекватные?
 popupImage.elImage = popupImage.querySelector('.image__img');
 popupImage.elLabel = popupImage.querySelector('.image__label');
 
 /* forms */
 const formProfile = document.forms['form-profile'];
 const formCard = document.forms['form-card'];
+
+/* validators */
+const formProfileValidator = new FormValidator(validatorSettings, formProfile);
+const formCardValidator = new FormValidator(validatorSettings, formCard);
 
 /* controls */
 const btnEditProfile = document.querySelector('.profile__edit-button');
@@ -136,21 +152,24 @@ function openProfilePopup() {
   inputProfileName.value = profileName.textContent;
   inputProfileProf.value = profileProf.textContent;
 
-  validate(inputProfileName);
-  validate(inputProfileProf);
+  formProfileValidator.validate(inputProfileName);
+  formProfileValidator.validate(inputProfileProf);
 
   openPopup(popupProfile);
 }
 
 function initialize() {
-  enableValidation({
-    formSelector: '.form',
-    inputSelector: '.form__input',
-    submitButtonSelector: '.form__submit',
-    inactiveButtonClass: 'button_disabled',
-    inputErrorClass: 'form__input_type_error',
-    errorClass: 'form__error-msg_active'
-  });
+  // enableValidation({
+  //   formSelector: '.form',
+  //   inputSelector: '.form__input',
+  //   submitButtonSelector: '.form__submit',
+  //   inactiveButtonClass: 'button_disabled',
+  //   inputErrorClass: 'form__input_type_error',
+  //   errorClass: 'form__error-msg_active'
+  // });
+
+  formProfileValidator.enableValidation();
+  formCardValidator.enableValidation();
   initialCards.forEach(item => addCard(item));
 }
 
@@ -159,7 +178,7 @@ btnEditProfile.addEventListener('click', openProfilePopup);
 formProfile.addEventListener('submit', handleProfileSubmit);
 formCard.addEventListener('submit', handleCardSubmit);
 btnCardAdd.addEventListener('click', () => {
-  validateForm(popupCard);
+  formCardValidator.validate();
   openPopup(popupCard);
 });
 
