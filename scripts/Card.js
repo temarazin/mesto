@@ -30,7 +30,6 @@ export class Card {
 
     this._btnLike = this._card.querySelector('.photo-grid__like-button');
     this._btnRemove = this._card.querySelector('.photo-grid__remove-button');
-    this._linkElement = this._card.querySelector('.photo__image-link');
 
     this._imageElement.src = this._link;
     this._imageElement.alt = this._name;
