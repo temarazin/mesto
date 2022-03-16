@@ -1,5 +1,6 @@
 import { FormValidator } from './FormValidator.js'
 import { Card } from './Card.js'
+import { initialCards } from './initialСards.js';
 
 /* validator settings */
 const validatorSettings = {
