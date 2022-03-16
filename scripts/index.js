@@ -123,8 +123,7 @@ function openProfilePopup() {
   inputProfileName.value = profileName.textContent;
   inputProfileProf.value = profileProf.textContent;
 
-  formProfileValidator.validate(inputProfileName);
-  formProfileValidator.validate(inputProfileProf);
+  formProfileValidator.validate();
 
   openPopup(popupProfile);
 }
