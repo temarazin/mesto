@@ -2,7 +2,6 @@ export class FormValidator {
   constructor(settings, form) {
     this._settings = settings;
     this._form = form;
-    this._currentInput = undefined;
     this._btnSubmit = form.querySelector(settings.submitButtonSelector);
   }
 
