@@ -1,3 +1,5 @@
+/* В макете не предусмотрено место для 2 строк. Ужал как мог. */
+
 .form__input {
   width: 100%;
   border: 1px solid rgba(0, 0, 0, 0.2);
@@ -5,7 +7,7 @@
   color: #000;
   font-size: 14px;
   padding: 0 0 10px;
-  margin-top: 30px;
+  margin-top: 1px;
 }
 
 .form__input:first-child {
