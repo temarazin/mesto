@@ -96,10 +96,16 @@ const handlePopupEscPress = (e) => {
   }
 }
 
-function addCard(data) {
-  const card = new Card(data, cardTemplate, showImage);
-  cardContainer.prepend(card.createCard());
+function addCard(card) {
+  cardContainer.prepend(card);
 }
+
+function createCard(data) {
+  const card = new Card(data, cardTemplate, showImage);
+  return card.createCard();
+}
+
+
 
 function handleProfileSubmit(e) {
   e.preventDefault();
@@ -114,7 +120,7 @@ function handleCardSubmit(e) {
     name: inputCardName.value,
     link: inputCardImageLink.value
   };
-  addCard(item);
+  addCard( createCard(item) );
   e.target.reset();
   closePopup(popupCard);
 }
@@ -131,7 +137,7 @@ function openProfilePopup() {
 function initialize() {
   formProfileValidator.enableValidation();
   formCardValidator.enableValidation();
-  initialCards.forEach(item => addCard(item));
+  initialCards.forEach(item => addCard( createCard(item) ));
 }
 
 /* events */
