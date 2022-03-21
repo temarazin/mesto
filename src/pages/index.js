@@ -1,6 +1,7 @@
-import { FormValidator } from '../components/FormValidator.js';
-import { Card } from '../components/Card.js';
-import { initialCards } from './initialСards.js';
+import './index.css';
+import FormValidator from '../components/FormValidator.js';
+import Card from '../components/Card.js';
+import { initialCards } from '../scripts/initialСards.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
@@ -37,10 +38,8 @@ const btnEditProfile = document.querySelector('.profile__edit-button');
 const btnCardAdd = document.querySelector('.profile__add-button');
 const inputProfileName = formProfile.querySelector('.form__input[name="name"]');
 const inputProfileProf = formProfile.querySelector('.form__input[name="profession"]');
-const inputCardName = formCard.querySelector('.form__input[name="name"]');
-const inputCardImageLink = formCard.querySelector('.form__input[name="image-link"]');
 
-/* elements */
+/* others */
 const userElem = new UserInfo('.profile__name', '.profile__profession');
 const cardContainer = new Section({items: initialCards, renderer: addCard}, '.photo-grid');
 
@@ -56,35 +55,24 @@ function addCard(card) {
 function createCard(data) {
   const card = new Card(data, cardTemplate, showImage);
   return card.createCard();
-
 }
 
-
-
-function handleProfileSubmit(e) {
+function handleProfileSubmit(e, data) {
   e.preventDefault();
-  userElem.setUserInfo({
-    name: inputProfileName.value,
-    prof: inputProfileProf.value
-  });
+  userElem.setUserInfo(data);
   popupProfile.close();
 }
 
-function handleCardSubmit(e) {
+function handleCardSubmit(e, data) {
   e.preventDefault();
-  const item = {
-    name: inputCardName.value,
-    link: inputCardImageLink.value
-  };
-  addCard( createCard(item) );
-  e.target.reset();
+  addCard( createCard(data) );
   popupCard.close();
 }
 
 function openProfilePopup() {
   const userInfo = userElem.getUserInfo();
   inputProfileName.value = userInfo.name;
-  inputProfileProf.value = userInfo.prof;
+  inputProfileProf.value = userInfo.profession;
 
   formProfileValidator.validate();
 
