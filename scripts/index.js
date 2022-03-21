@@ -4,6 +4,7 @@ import { initialCards } from './initialСards.js';
 import Section from '../components/Section.js';
 import Popup from '../components/Popup.js';
 import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithForm.js';
 
 /* validator settings */
 const validatorSettings = {
@@ -21,8 +22,8 @@ const cardTemplate = '#card';
 /* popups */
 // const popupProfile = document.querySelector('.popup_name_profile');
 // const popupCard = document.querySelector('.popup_name_card');
-const popupProfile = new Popup('.popup_name_profile');
-const popupCard = new Popup('.popup_name_card');
+const popupProfile = new PopupWithForm('.popup_name_profile', handleProfileSubmit);
+const popupCard = new PopupWithForm('.popup_name_card', handleCardSubmit);
 
 // const popupImage = document.querySelector('.popup_name_image');
 const popupImage = new PopupWithImage('.popup_name_image');
@@ -134,7 +135,7 @@ function openProfilePopup() {
 
   formProfileValidator.validate();
 
-  openPopup(popupProfile);
+  popupProfile.open();
 }
 
 function initialize() {
@@ -145,8 +146,8 @@ function initialize() {
 
 /* events */
 btnEditProfile.addEventListener('click', openProfilePopup);
-formProfile.addEventListener('submit', handleProfileSubmit);
-formCard.addEventListener('submit', handleCardSubmit);
+// formProfile.addEventListener('submit', handleProfileSubmit);
+// formCard.addEventListener('submit', handleCardSubmit);
 btnCardAdd.addEventListener('click', () => {
   formCardValidator.validate();
   popupCard.open();
