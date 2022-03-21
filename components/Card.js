@@ -19,7 +19,7 @@ export class Card {
     this._btnLike.addEventListener('click', this._likeCard);
     this._btnRemove.addEventListener('click', this._removeCard);
     this._imageElement.addEventListener('click', () => {
-      this._clickImage({imageEl: this._imageElement, labelEl: this._nameElement});
+      this._clickImage({link: this._imageElement.src, label: this._nameElement.textContent});
     });
   }
 

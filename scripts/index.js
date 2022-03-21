@@ -3,6 +3,7 @@ import { Card } from '../components/Card.js';
 import { initialCards } from './initialСards.js';
 import Section from '../components/Section.js';
 import Popup from '../components/Popup.js';
+import PopupWithImage from '../components/PopupWithImage.js';
 
 /* validator settings */
 const validatorSettings = {
@@ -23,9 +24,10 @@ const cardTemplate = '#card';
 const popupProfile = new Popup('.popup_name_profile');
 const popupCard = new Popup('.popup_name_card');
 
-const popupImage = document.querySelector('.popup_name_image');
-popupImage.elImage = popupImage.querySelector('.image__img');
-popupImage.elLabel = popupImage.querySelector('.image__label');
+// const popupImage = document.querySelector('.popup_name_image');
+const popupImage = new PopupWithImage('.popup_name_image');
+// popupImage.elImage = popupImage.querySelector('.image__img');
+// popupImage.elLabel = popupImage.querySelector('.image__label');
 
 /* forms */
 const formProfile = document.forms['form-profile'];
@@ -76,11 +78,8 @@ const cardContainer = document.querySelector('.photo-grid');
 //   popup.classList.remove('popup_opened');
 // }
 
-function showImage(item) {
-    popupImage.elImage.src = item.imageEl.src;
-    popupImage.elImage.alt = item.imageEl.alt;
-    popupImage.elLabel.textContent = item.labelEl.textContent;
-    openPopup(popupImage);
+function showImage(data) {
+    popupImage.open(data);
   }
 
 // const handleButtonClosePopup = (e) => {
