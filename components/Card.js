@@ -1,9 +1,9 @@
 export class Card {
-  constructor(data, templateSelector, clickImage) {
+  constructor(data, templateSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._cardTemplate = document.querySelector(templateSelector).content;
-    this._clickImage = clickImage;
+    this._clickImage = handleCardClick;
   }
 
   _removeCard = (e) => {
