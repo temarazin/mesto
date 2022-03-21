@@ -17,6 +17,7 @@
 * Flexbox и Grid
 * Media queries
 * Javascipt
+* webpack
 
 ---
 Работа выполнена для [Яндекс.Практикум](https://practicum.yandex.ru/)
