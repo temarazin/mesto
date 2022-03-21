@@ -100,9 +100,14 @@ function showImage(data) {
 //   }
 // }
 
-function addCard(data) {
+function addCard(card) {
+  cardContainer.addItem(card);
+}
+
+function createCard(data) {
   const card = new Card(data, cardTemplate, showImage);
-  cardContainer.addItem(card.createCard());
+  return card.createCard();
+
 }
 
 function handleProfileSubmit(e) {
@@ -118,7 +123,7 @@ function handleCardSubmit(e) {
     name: inputCardName.value,
     link: inputCardImageLink.value
   };
-  addCard(item);
+  addCard( createCard(item) );
   e.target.reset();
   popupCard.close();
 }
@@ -127,16 +132,15 @@ function openProfilePopup() {
   inputProfileName.value = profileName.textContent;
   inputProfileProf.value = profileProf.textContent;
 
-  formProfileValidator.validate(inputProfileName);
-  formProfileValidator.validate(inputProfileProf);
+  formProfileValidator.validate();
 
-  popupProfile.open();
+  openPopup(popupProfile);
 }
 
 function initialize() {
   formProfileValidator.enableValidation();
   formCardValidator.enableValidation();
-  initialCards.forEach(item => addCard(item));
+  initialCards.forEach(item => addCard( createCard(item) ));
 }
 
 /* events */

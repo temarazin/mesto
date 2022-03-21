@@ -3,6 +3,8 @@ export class FormValidator {
     this._settings = settings;
     this._form = form;
     this._btnSubmit = form.querySelector(settings.submitButtonSelector);
+    this._inputList = this._form.querySelectorAll(this._settings.inputSelector);
+    this._emptyFieldIsValid = false;
   }
 
   _toggleButtonSubmitState(isEnabled) {
@@ -37,11 +39,15 @@ export class FormValidator {
   }
 
   _isValidInput(input = this._currentInput) {
-    return input.validity.valid;
+    if (this._emptyFieldIsValid) {
+      return input.validity.valid || input.value === '';
+    } else {
+      return input.validity.valid;
+    }
   }
 
   _validateInput() {
-    let result = this._isValidInput();
+    const result = this._isValidInput();
     if (result) {
       this._hideValidationError();
     } else {
@@ -54,8 +60,7 @@ export class FormValidator {
     const {inputSelector} = this._settings;
 
     let isValidForm = true;
-    const inputList = this._form.querySelectorAll(inputSelector);
-    Array.from(inputList).forEach( (input) => {
+    Array.from(this._inputList).forEach( (input) => {
       isValidForm &= this._isValidInput(input);
     });
     this._toggleButtonSubmitState(isValidForm);
@@ -66,14 +71,14 @@ export class FormValidator {
     this._validateForm();
   }
 
-  validate(input = false) {
-    if (input) {
+  validate() {
+    this._emptyFieldIsValid = true;
+    Array.from(this._inputList).forEach( (input) => {
       this._currentInput = input;
-      this._validate();
-    } else {
-      this._validateForm();
-    }
-
+      this._validateInput();
+    });
+    this._emptyFieldIsValid = false;
+    this._validateForm();
   }
 
   enableValidation() {
