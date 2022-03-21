@@ -48,7 +48,8 @@ const inputCardImageLink = formCard.querySelector('.form__input[name="image-link
 /* elements */
 const profileName = document.querySelector('.profile__name');
 const profileProf = document.querySelector('.profile__profession');
-const cardContainer = document.querySelector('.photo-grid');
+// const cardContainer = document.querySelector('.photo-grid');
+const cardContainer = new Section({items: initialCards, renderer: addCard}, '.photo-grid');
 
 
 /* functions */
@@ -101,7 +102,7 @@ function showImage(data) {
 
 function addCard(data) {
   const card = new Card(data, cardTemplate, showImage);
-  cardContainer.prepend(card.createCard());
+  cardContainer.addItem(card.createCard());
 }
 
 function handleProfileSubmit(e) {
