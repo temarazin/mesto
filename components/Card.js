@@ -1,9 +1,9 @@
 export class Card {
-  constructor(data, templateSelector, clickImage) {
+  constructor(data, templateSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
     this._cardTemplate = document.querySelector(templateSelector).content;
-    this._clickImage = clickImage;
+    this._clickImage = handleCardClick;
   }
 
   _removeCard = (e) => {
@@ -19,7 +19,7 @@ export class Card {
     this._btnLike.addEventListener('click', this._likeCard);
     this._btnRemove.addEventListener('click', this._removeCard);
     this._imageElement.addEventListener('click', () => {
-      this._clickImage({imageEl: this._imageElement, labelEl: this._nameElement});
+      this._clickImage({link: this._imageElement.src, label: this._nameElement.textContent});
     });
   }
 
