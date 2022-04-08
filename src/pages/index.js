@@ -69,19 +69,34 @@ function createCard(data) {
 }
 
 function handleProfileSubmit(data) {
-  userElem.setUserInfo(data);
-  popupProfile.close();
+  console.log(data);
+  api.setPersonalData(data)
+    .then( resData => {
+      userElem.setUserInfo(resData);
+      popupProfile.close();
+    })
+    .catch( (error) => {
+      console.log(error);
+    });
+
 }
 
 function handleCardSubmit(data) {
-  addCard( createCard(data) );
-  popupCard.close();
+  console.log(data);
+  api.addNewCard(data)
+    .then( cardData => {
+      addCard( createCard(cardData) );
+      popupCard.close();
+    })
+    .catch( (error) => {
+      console.log(error);
+    });
 }
 
 function openProfilePopup() {
   const userInfo = userElem.getUserInfo();
   inputProfileName.value = userInfo.name;
-  inputProfileProf.value = userInfo.profession;
+  inputProfileProf.value = userInfo.about;
 
   formProfileValidator.validate();
 
@@ -91,7 +106,7 @@ function openProfilePopup() {
 function initialize() {
   api.getPersonalData()
     .then( userData => {
-      userElem.setUserInfo({name: userData.name, profession: userData.about});
+      userElem.setUserInfo({name: userData.name, about: userData.about});
       userElem.setAvatar(userData.avatar);
     })
     .catch( (error) => {

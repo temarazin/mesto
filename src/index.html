@@ -51,7 +51,7 @@
             >
             <span class="profile-name-error form__error-msg"></span>
             <input
-              name="profession"
+              name="about"
               id="profile-profession"
               type="text"
               class="form__input"
@@ -126,7 +126,10 @@
       </a>
       <div class="photo-grid__item-footer">
         <p class="photo-grid__item-name"></p>
-        <button type="button" class="photo-grid__like-button"></button>
+        <div class="photo-grid__like-wrapper">
+          <button type="button" class="photo-grid__like-button"></button>
+          <span class="photo-grid__like-count"></span>
+        </div>
       </div>
     </li>
   </template>

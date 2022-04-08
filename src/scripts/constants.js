@@ -19,7 +19,7 @@ export const formCard = document.forms['form-card'];
 export const btnEditProfile = document.querySelector('.profile__edit-button');
 export const btnCardAdd = document.querySelector('.profile__add-button');
 export const inputProfileName = formProfile.querySelector('.form__input[name="name"]');
-export const inputProfileProf = formProfile.querySelector('.form__input[name="profession"]');
+export const inputProfileProf = formProfile.querySelector('.form__input[name="about"]');
 
 /* initial cards */
 export const initialCards = [{

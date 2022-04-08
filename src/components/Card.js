@@ -2,6 +2,7 @@ export default class Card {
   constructor(data, templateSelector, handleCardClick) {
     this._name = data.name;
     this._link = data.link;
+    this._likes = data.likes;
     this._cardTemplate = document.querySelector(templateSelector).content;
     this._clickImage = handleCardClick;
   }
@@ -28,12 +29,14 @@ export default class Card {
     this._imageElement = this._card.querySelector('.photo-grid__image');
     this._nameElement = this._card.querySelector('.photo-grid__item-name');
 
+    this._likeCounterElement = this._card.querySelector('.photo-grid__like-count');
     this._btnLike = this._card.querySelector('.photo-grid__like-button');
     this._btnRemove = this._card.querySelector('.photo-grid__remove-button');
 
     this._imageElement.src = this._link;
     this._imageElement.alt = this._name;
     this._nameElement.textContent = this._name;
+    this._likeCounterElement.textContent = this._likes.length;
 
     this._setEventListeners();
 

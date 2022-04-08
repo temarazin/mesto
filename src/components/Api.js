@@ -2,7 +2,6 @@ export default class Api {
   constructor(options) {
     this._baseUrl = options.baseUrl;
     this._headers = options.headers;
-    this._method = options.method || 'GET';
   }
 
   getPersonalData() {
@@ -21,6 +20,36 @@ export default class Api {
   getCards() {
     return fetch(this._baseUrl + '/cards', {
       headers: this._headers
+    })
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      }
+
+      return Promise.reject(`Ошибка: ${res.status}`);
+    });
+  }
+
+  setPersonalData(userData) {
+    return fetch(this._baseUrl + '/users/me', {
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify(userData)
+    })
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      }
+
+      return Promise.reject(`Ошибка: ${res.status}`);
+    });
+  }
+
+  addNewCard(cardData) {
+    return fetch(this._baseUrl + '/cards', {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify(cardData)
     })
     .then(res => {
       if (res.ok) {

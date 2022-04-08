@@ -8,13 +8,13 @@ export default class UserInfo {
   getUserInfo() {
     return {
       name: this._nameElem.textContent,
-      profession: this._profElem.textContent
+      about: this._profElem.textContent
     }
   }
 
-  setUserInfo({name, profession}) {
+  setUserInfo({name, about}) {
     this._nameElem.textContent = name;
-    this._profElem.textContent = profession;
+    this._profElem.textContent = about;
   }
 
   setAvatar(url) {
