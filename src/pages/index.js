@@ -5,6 +5,7 @@ import Card from '../components/Card.js';
 import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api';
 
@@ -17,7 +18,8 @@ import {
   btnCardAdd,
   inputProfileName,
   inputProfileProf,
-  initialCards
+  formConfirm,
+  inputConfirmCardId
 } from '../scripts/constants.js';
 
 
@@ -41,6 +43,8 @@ const popupCard = new PopupWithForm('.popup_name_card', handleCardSubmit);
 popupCard.setEventListeners();
 const popupImage = new PopupWithImage('.popup_name_image');
 popupImage.setEventListeners();
+const popupConfirm = new PopupWithConfirmation('.popup_name_confirm', handleRemoveCardSubmit);
+popupConfirm.setEventListeners();
 
 /* others */
 const userElem = new UserInfo('.profile__name', '.profile__profession', '.profile__avatar');
@@ -64,7 +68,10 @@ function addCard(card) {
 }
 
 function createCard(data) {
-  const card = new Card(data, cardTemplate, showImage);
+  const card = new Card(data, cardTemplate, {
+    handleCardClick: showImage,
+    handleTrashClick: confirmRemove
+  } );
   return card.createCard();
 }
 
@@ -93,6 +100,21 @@ function handleCardSubmit(data) {
     });
 }
 
+function confirmRemove(card) {
+  popupConfirm.open(card);
+}
+
+function handleRemoveCardSubmit(card) {
+  api.removeCard(card._id)
+    .then( () => {
+      card.removeCard();
+    })
+    .catch( (error) => {
+      console.log(error);
+    });
+
+}
+
 function openProfilePopup() {
   const userInfo = userElem.getUserInfo();
   inputProfileName.value = userInfo.name;
@@ -106,8 +128,10 @@ function openProfilePopup() {
 function initialize() {
   api.getPersonalData()
     .then( userData => {
+      console.log(userData);
       userElem.setUserInfo({name: userData.name, about: userData.about});
       userElem.setAvatar(userData.avatar);
+      userElem.setUserId(userData._id);
     })
     .catch( (error) => {
       console.log(error);
@@ -115,6 +139,10 @@ function initialize() {
 
   api.getCards()
     .then( cards => {
+      console.log(cards);
+      cards.forEach(item => {
+        item.isOwner = userElem.getUserId() === item.owner._id;
+      });
       console.log(cards);
       cardContainer.rewriteItems(cards);
       cardContainer.render();

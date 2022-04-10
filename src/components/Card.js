@@ -1,14 +1,16 @@
 export default class Card {
-  constructor(data, templateSelector, handleCardClick) {
+  constructor(data, templateSelector, {...handlers}) {
     this._name = data.name;
     this._link = data.link;
     this._likes = data.likes;
     this._cardTemplate = document.querySelector(templateSelector).content;
-    this._clickImage = handleCardClick;
+    this._clickImage = handlers.handleCardClick;
+    this._clickTrash = handlers.handleTrashClick;
+    this._id = data._id;
+    this._isOwner = data.isOwner;
   }
 
-  _removeCard = (e) => {
-    e.stopPropagation();
+  removeCard() {
     this._card.remove();
   }
 
@@ -18,10 +20,13 @@ export default class Card {
 
   _setEventListeners() {
     this._btnLike.addEventListener('click', this._likeCard);
-    this._btnRemove.addEventListener('click', this._removeCard);
     this._imageElement.addEventListener('click', () => {
       this._clickImage({link: this._imageElement.src, label: this._nameElement.textContent});
     });
+
+    if (this._isOwner) {
+      this._btnRemove.addEventListener('click', () => {this._clickTrash(this)});
+    }
   }
 
   createCard() {
@@ -37,6 +42,8 @@ export default class Card {
     this._imageElement.alt = this._name;
     this._nameElement.textContent = this._name;
     this._likeCounterElement.textContent = this._likes.length;
+
+    if (!this._isOwner) this._btnRemove.remove();
 
     this._setEventListeners();
 
