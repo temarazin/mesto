@@ -72,4 +72,18 @@ export default class Api {
       return Promise.reject(`Ошибка: ${res.status}`);
     });
   }
+
+  likeCard(card, isNewLike) {
+    const method = (isNewLike ? 'PUT' : 'DELETE');
+    return fetch(this._baseUrl + '/cards/' + card._id + '/likes', {
+      method: method,
+      headers: this._headers,
+    })
+    .then(res => {
+      if (res.ok) {
+        return res.json();
+      }
+      return Promise.reject(`Ошибка: ${res.status}`);
+    });
+  }
 }

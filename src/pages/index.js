@@ -70,7 +70,8 @@ function addCard(card) {
 function createCard(data) {
   const card = new Card(data, cardTemplate, {
     handleCardClick: showImage,
-    handleTrashClick: confirmRemove
+    handleTrashClick: confirmRemove,
+    handleLikeClick: handleLikeBtn
   } );
   return card.createCard();
 }
@@ -112,7 +113,16 @@ function handleRemoveCardSubmit(card) {
     .catch( (error) => {
       console.log(error);
     });
+}
 
+function handleLikeBtn(card, isNewLike) {
+  api.likeCard(card, isNewLike)
+  .then( (result) => {
+    card._likeCounterElement.textContent = result.likes.length;
+  })
+  .catch( (error) => {
+    console.log(error);
+  });
 }
 
 function openProfilePopup() {
@@ -142,7 +152,12 @@ function initialize() {
       console.log(cards);
       cards.forEach(item => {
         item.isOwner = userElem.getUserId() === item.owner._id;
+        const isLiked = item.likes.some(likeOwner => {
+          return likeOwner._id === userElem.getUserId();
+        });
+        item.isLiked = isLiked;
       });
+
       console.log(cards);
       cardContainer.rewriteItems(cards);
       cardContainer.render();
