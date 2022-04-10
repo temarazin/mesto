@@ -14,9 +14,8 @@ export default class Card {
   }
 
   _likeCard = () => {
-    const isNewlike = !this._btnLike.classList.contains('photo-grid__like-button_active');
     this._btnLike.classList.toggle('photo-grid__like-button_active');
-    this._clickLike(this, isNewlike);
+    this._clickLike(this, !this._isLiked);
   }
 
   _setEventListeners() {

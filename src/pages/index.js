@@ -14,12 +14,13 @@ import {
   cardTemplate,
   formProfile,
   formCard,
+  formAvatar,
   btnEditProfile,
   btnCardAdd,
   inputProfileName,
   inputProfileProf,
-  formConfirm,
-  inputConfirmCardId
+  avatarImage,
+  avatarBtn
 } from '../scripts/constants.js';
 
 
@@ -35,6 +36,7 @@ const api = new Api({
 /* validators */
 const formProfileValidator = new FormValidator(validatorSettings, formProfile);
 const formCardValidator = new FormValidator(validatorSettings, formCard);
+const formAvatarValidator = new FormValidator(validatorSettings, formAvatar);
 
 /* popups */
 const popupProfile = new PopupWithForm('.popup_name_profile', handleProfileSubmit);
@@ -45,6 +47,8 @@ const popupImage = new PopupWithImage('.popup_name_image');
 popupImage.setEventListeners();
 const popupConfirm = new PopupWithConfirmation('.popup_name_confirm', handleRemoveCardSubmit);
 popupConfirm.setEventListeners();
+const popupAvatar = new PopupWithForm('.popup_name_avatar', handleAvatarSubmit);
+popupAvatar.setEventListeners();
 
 /* others */
 const userElem = new UserInfo('.profile__name', '.profile__profession', '.profile__avatar');
@@ -87,6 +91,18 @@ function handleProfileSubmit(data) {
       console.log(error);
     });
 
+}
+
+function handleAvatarSubmit(data) {
+  console.log(data);
+  api.updateAvatar(data.avatar)
+    .then( res => {
+      avatarImage.src = res.avatar;
+      popupAvatar.close();
+    })
+    .catch( (error) => {
+      console.log(error);
+    });
 }
 
 function handleCardSubmit(data) {
@@ -135,6 +151,11 @@ function openProfilePopup() {
   popupProfile.open();
 }
 
+function openAvatarPopup() {
+  formAvatarValidator.validate();
+  popupAvatar.open();
+}
+
 function initialize() {
   api.getPersonalData()
     .then( userData => {
@@ -149,7 +170,6 @@ function initialize() {
 
   api.getCards()
     .then( cards => {
-      console.log(cards);
       cards.forEach(item => {
         item.isOwner = userElem.getUserId() === item.owner._id;
         const isLiked = item.likes.some(likeOwner => {
@@ -168,6 +188,7 @@ function initialize() {
 
   formProfileValidator.enableValidation();
   formCardValidator.enableValidation();
+  formAvatarValidator.enableValidation();
 
 }
 
@@ -178,6 +199,8 @@ btnCardAdd.addEventListener('click', () => {
   formCardValidator.validate();
   popupCard.open();
 });
+avatarBtn.addEventListener('click', openAvatarPopup);
+
 
 /* script */
 
