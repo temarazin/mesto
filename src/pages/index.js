@@ -80,8 +80,9 @@ function createCard(data) {
   return card.createCard();
 }
 
-function handleProfileSubmit(data) {
-  console.log(data);
+function handleProfileSubmit(data, btnSubmit) {
+  const btnText = btnSubmit.textContent;
+  btnSubmit.textContent = `${btnText}...`;
   api.setPersonalData(data)
     .then( resData => {
       userElem.setUserInfo(resData);
@@ -89,11 +90,16 @@ function handleProfileSubmit(data) {
     })
     .catch( (error) => {
       console.log(error);
+    })
+    .finally( () => {
+      btnSubmit.textContent = `${btnText}`;
     });
 
 }
 
-function handleAvatarSubmit(data) {
+function handleAvatarSubmit(data, btnSubmit) {
+  const btnText = btnSubmit.textContent;
+  btnSubmit.textContent = `${btnText}...`;
   api.updateAvatar(data.avatar)
     .then( res => {
       avatarImage.src = res.avatar;
@@ -101,10 +107,15 @@ function handleAvatarSubmit(data) {
     })
     .catch( (error) => {
       console.log(error);
+    })
+    .finally( () => {
+      btnSubmit.textContent = `${btnText}`;
     });
 }
 
-function handleCardSubmit(data) {
+function handleCardSubmit(data, btnSubmit) {
+  const btnText = btnSubmit.textContent;
+  btnSubmit.textContent = `${btnText}...`;
   api.addNewCard(data)
     .then( cardData => {
       cardData.isOwner = true;
@@ -113,6 +124,9 @@ function handleCardSubmit(data) {
     })
     .catch( (error) => {
       console.log(error);
+    })
+    .finally( () => {
+      btnSubmit.textContent = `${btnText}`;
     });
 }
 
