@@ -94,7 +94,6 @@ function handleProfileSubmit(data) {
 }
 
 function handleAvatarSubmit(data) {
-  console.log(data);
   api.updateAvatar(data.avatar)
     .then( res => {
       avatarImage.src = res.avatar;
@@ -106,9 +105,9 @@ function handleAvatarSubmit(data) {
 }
 
 function handleCardSubmit(data) {
-  console.log(data);
   api.addNewCard(data)
     .then( cardData => {
+      cardData.isOwner = true;
       addCard( createCard(cardData) );
       popupCard.close();
     })
