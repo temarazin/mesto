@@ -4,16 +4,24 @@ export default class Api {
     this._headers = options.headers;
   }
 
+  _checkResponse(res, isJsonAnswer) {
+    if (res.ok) {
+      if (isJsonAnswer === true) {
+        return res.json();
+      } else {
+        return true;
+      }
+    }
+
+    return Promise.reject(`Ошибка: ${res.status}`);
+  }
+
   getPersonalData() {
     return fetch(this._baseUrl + '/users/me', {
       headers: this._headers
     })
     .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-
-      return Promise.reject(`Ошибка: ${res.status}`);
+      return this._checkResponse(res, true);
     });
   }
 
@@ -22,11 +30,7 @@ export default class Api {
       headers: this._headers
     })
     .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-
-      return Promise.reject(`Ошибка: ${res.status}`);
+      return this._checkResponse(res, true);
     });
   }
 
@@ -37,11 +41,7 @@ export default class Api {
       body: JSON.stringify(userData)
     })
     .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-
-      return Promise.reject(`Ошибка: ${res.status}`);
+      return this._checkResponse(res, true);
     });
   }
 
@@ -52,11 +52,7 @@ export default class Api {
       body: JSON.stringify(cardData)
     })
     .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-
-      return Promise.reject(`Ошибка: ${res.status}`);
+      return this._checkResponse(res, true);
     });
   }
 
@@ -66,10 +62,7 @@ export default class Api {
       headers: this._headers,
     })
     .then(res => {
-      if (res.ok) {
-        return true;
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
+      return this._checkResponse(res);
     });
   }
 
@@ -80,10 +73,7 @@ export default class Api {
       headers: this._headers,
     })
     .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-      return Promise.reject(`Ошибка: ${res.status}`);
+      return this._checkResponse(res, true);
     });
   }
 
@@ -94,11 +84,7 @@ export default class Api {
       body: JSON.stringify({avatar: url})
     })
     .then(res => {
-      if (res.ok) {
-        return res.json();
-      }
-
-      return Promise.reject(`Ошибка: ${res.status}`);
+      return this._checkResponse(res, true);
     });
   }
 }
