@@ -14,7 +14,6 @@ export default class Card {
   }
 
   _likeCard = () => {
-    this._btnLike.classList.toggle('photo-grid__like-button_active');
     this._clickLike(this, !this._isLiked);
   }
 

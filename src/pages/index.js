@@ -148,6 +148,7 @@ function handleLikeBtn(card, isNewLike) {
   api.likeCard(card, isNewLike)
   .then( (result) => {
     card._likeCounterElement.textContent = result.likes.length;
+    card._btnLike.classList.toggle('photo-grid__like-button_active');
   })
   .catch( (error) => {
     console.log(error);
@@ -170,19 +171,16 @@ function openAvatarPopup() {
 }
 
 function initialize() {
-  api.getPersonalData()
-    .then( userData => {
-      console.log(userData);
+
+  Promise.all([api.getPersonalData(), api.getCards()])
+    .then( data => {
+      const userData = data[0];
+      const cards = data[1];
+
       userElem.setUserInfo({name: userData.name, about: userData.about});
       userElem.setAvatar(userData.avatar);
       userElem.setUserId(userData._id);
-    })
-    .catch( (error) => {
-      console.log(error);
-    });
 
-  api.getCards()
-    .then( cards => {
       cards.forEach(item => {
         item.isOwner = userElem.getUserId() === item.owner._id;
         const isLiked = item.likes.some(likeOwner => {
@@ -191,7 +189,6 @@ function initialize() {
         item.isLiked = isLiked;
       });
 
-      console.log(cards);
       cardContainer.rewriteItems(cards);
       cardContainer.render();
     })
