@@ -134,13 +134,19 @@ function confirmRemove(card) {
   popupConfirm.open(card);
 }
 
-function handleRemoveCardSubmit(card) {
+function handleRemoveCardSubmit(card, btnSubmit) {
+  const btnText = btnSubmit.textContent;
+  btnSubmit.textContent = `${btnText}...`;
   api.removeCard(card._id)
     .then( () => {
       card.removeCard();
+      popupConfirm.close();
     })
     .catch( (error) => {
       console.log(error);
+    })
+    .finally( () => {
+      btnSubmit.textContent = `${btnText}`;
     });
 }
 
@@ -173,10 +179,7 @@ function openAvatarPopup() {
 function initialize() {
 
   Promise.all([api.getPersonalData(), api.getCards()])
-    .then( data => {
-      const userData = data[0];
-      const cards = data[1];
-
+    .then( ([userData, cards]) => {
       userElem.setUserInfo({name: userData.name, about: userData.about});
       userElem.setAvatar(userData.avatar);
       userElem.setUserId(userData._id);
