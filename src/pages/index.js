@@ -19,7 +19,6 @@ import {
   btnCardAdd,
   inputProfileName,
   inputProfileProf,
-  avatarImage,
   avatarBtn
 } from '../scripts/constants.js';
 
@@ -102,7 +101,7 @@ function handleAvatarSubmit(data, btnSubmit) {
   btnSubmit.textContent = `${btnText}...`;
   api.updateAvatar(data.avatar)
     .then( res => {
-      avatarImage.src = res.avatar;
+      userElem.setAvatar(res.avatar);
       popupAvatar.close();
     })
     .catch( (error) => {

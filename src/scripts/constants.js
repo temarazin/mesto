@@ -23,5 +23,4 @@ export const btnCardAdd = document.querySelector('.profile__add-button');
 export const inputProfileName = formProfile.querySelector('.form__input[name="name"]');
 export const inputProfileProf = formProfile.querySelector('.form__input[name="about"]');
 export const inputConfirmCardId = formConfirm.querySelector('[name="card-id"]');
-export const avatarImage = document.querySelector('.profile__avatar');
 export const avatarBtn = document.querySelector('.profile__avatar-btn');
