@@ -180,8 +180,7 @@ function initialize() {
 
   Promise.all([api.getPersonalData(), api.getCards()])
     .then( ([userData, cards]) => {
-      userElem.setUserInfo({name: userData.name, about: userData.about});
-      userElem.setAvatar(userData.avatar);
+      userElem.setUserInfo(userData);
       userElem.setUserId(userData._id);
 
       cards.forEach(item => {
